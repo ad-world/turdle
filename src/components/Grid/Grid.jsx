@@ -5,7 +5,7 @@ import TurdButtonRow from "../TurdButtonRow/TurdButtonRow";
 import TurdRow from "../TurdRow/TurdRow";
 import UtilBar from "../UtilBar/UtilBar";
 
-function Grid() {
+function Grid(props) {
     const [first, setFirst] = useState([]);
     const [second, setSecond] = useState([]);
     const [third, setThird] = useState([]);
@@ -13,6 +13,7 @@ function Grid() {
     const [fifth, setFifth] = useState([]);
     const [sixth, setSixth] = useState([]);
 
+    const guess = props.guess;
 
 
     const grid = [first, second, third, fourth, fifth, sixth];
