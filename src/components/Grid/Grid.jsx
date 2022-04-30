@@ -21,8 +21,8 @@ function Grid() {
     const [currentRowIndex, setCurrentRowIndex] = useState(0);
     const [currentColIndex, setCurrentColIndex] = useState(0);
 
-    const arr = grid[currentRowIndex];
-    const setter = setters[currentRowIndex];
+    var arr = grid[currentRowIndex];
+    var setter = setters[currentRowIndex];
 
 
     function choosePoop(color) {
