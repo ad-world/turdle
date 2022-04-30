@@ -1,0 +1,16 @@
+.btnrow {
+    border: solid 1px black;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: x-large;
+    transition: 0.3s;
+}
+
+.btnrow:hover {
+    background-color: antiquewhite;
+    color: black;
+    border: solid 1px antiquewhite;
+}
