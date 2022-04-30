@@ -4,3 +4,9 @@
     background-color: #1c1d1f;
     border-radius: 5%;
 }
+
+ @media (min-width: 320px) and (max-width: 767px) {
+    .cell {
+        height: 50px;
+    }
+ }

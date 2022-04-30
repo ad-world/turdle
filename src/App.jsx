@@ -13,8 +13,8 @@ function App() {
       <Header></Header>
       <Container className="justify-content-center">
         <Row>
-          <Col xs={4}></Col>
-          <Col xs={4}>
+          <Col xs={0} md={2} lg={3} xl={4}></Col>
+          <Col xs={12} md={8} lg={6} xl={4}>
             <TurdRow></TurdRow>
             <TurdRow></TurdRow>
             <TurdRow></TurdRow>
@@ -22,7 +22,7 @@ function App() {
             <TurdRow></TurdRow>
             <TurdRow></TurdRow>
           </Col>
-          <Col xs={4}></Col>
+          <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
       </Container>
     </div>
