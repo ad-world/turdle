@@ -1,18 +1,19 @@
 import React from "react";
 import { Container, Row, Col} from "react-bootstrap"
 import "./TurdRow.styles.css"
+import TurdImage from "../TurdImage/TurdImage";
 
 function TurdRow(props){    
     const turd = props.turd;
-    console.log(turd);
+
     return (
         <Container>
             <Row>
-                <Col className="cell m-2">{turd[0]}</Col>
-                <Col className="cell m-2">{turd[1]}</Col>
-                <Col className="cell m-2">{turd[2]}</Col>
-                <Col className="cell m-2">{turd[3]}</Col>
-                <Col className="cell m-2">{turd[4]}</Col>
+                <Col className="cell m-2 text-center pt-3"><TurdImage color={turd[0]}></TurdImage></Col>
+                <Col className="cell m-2 text-center pt-3"><TurdImage color={turd[1]}></TurdImage></Col>
+                <Col className="cell m-2 text-center pt-3"><TurdImage color={turd[2]}></TurdImage></Col>
+                <Col className="cell m-2 text-center pt-3"><TurdImage color={turd[3]}></TurdImage></Col>
+                <Col className="cell m-2 text-center pt-3"><TurdImage color={turd[4]}></TurdImage></Col>
             </Row>
         </Container>
     )
