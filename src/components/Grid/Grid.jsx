@@ -67,12 +67,12 @@ function Grid(props) {
         <Row>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
           <Col xs={12} md={8} lg={6} xl={4}>
-            <TurdRow turd={first}></TurdRow>
-            <TurdRow turd={second}></TurdRow>
-            <TurdRow turd={third}></TurdRow>
-            <TurdRow turd={fourth}></TurdRow>
-            <TurdRow turd={fifth}></TurdRow>
-            <TurdRow turd={sixth}></TurdRow>
+            <TurdRow turd={first} guess={guess}></TurdRow>
+            <TurdRow turd={second} guess={guess}></TurdRow>
+            <TurdRow turd={third} guess={guess}></TurdRow>
+            <TurdRow turd={fourth} guess={guess}></TurdRow>
+            <TurdRow turd={fifth} guess={guess}></TurdRow>
+            <TurdRow turd={sixth} guess={guess}></TurdRow>
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
