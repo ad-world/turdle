@@ -4,7 +4,6 @@ import "./TurdRow.styles.css"
 
 function TurdRow(){    
     return (
-        
         <Container>
             <Row>
                 <Col className="cell m-2"></Col>
