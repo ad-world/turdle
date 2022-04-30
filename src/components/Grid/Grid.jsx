@@ -13,28 +13,54 @@ function Grid() {
     const [fifth, setFifth] = useState([]);
     const [sixth, setSixth] = useState([]);
 
+
+
     const grid = [first, second, third, fourth, fifth, sixth];
     const setters = [setFirst, setSecond, setThird, setFourth, setFifth, setSixth];
     
-    const [currentRow, setCurrentRow] = useState(0);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentRowIndex, setCurrentRowIndex] = useState(0);
+    const [currentColIndex, setCurrentColIndex] = useState(0);
+
+    const arr = grid[currentRowIndex];
+    const setter = setters[currentRowIndex];
+
 
     function choosePoop(color) {
-      if(currentIndex != 5 && currentRow != 6) {
+      if(currentRowIndex != 6 && currentColIndex != 5) {
         if(color == "red") {
-          setFirst(first => [...first, "red"]);
+          setter(arr => [...arr, "red"]);
         } else if(color == "brown") {
-          setFirst(first => [...first, "brown"]);
+          setter(arr => [...arr, "brown"]);
         } else if(color == "white") {
-          setFirst(first => [...first, "white"]);
+          setter(arr => [...arr, "white"]);
         } else if(color == "purple") {
-          setFirst(first => [...first, "purple"]);
+          setter(arr => [...arr, "purple"]);
         } else if (color == "green") {
-          setFirst(first => [...first, "green"]);
+          setter(arr => [...arr, "green"]);
         }
-        setCurrentIndex(currentIndex + 1);
+        setCurrentColIndex(currentColIndex + 1);
       } 
     }
+
+    function makeGuess() {
+      if(arr.length == 5) {
+        setCurrentRowIndex(currentRowIndex + 1);
+        setCurrentColIndex(0);
+        arr = grid[currentColIndex];
+        setter = setters[currentColIndex];
+      } else {
+        alert("You need to fill the row before you can guess.")
+      }
+      
+    }
+
+    function deleteGuess() {
+      if(arr.length > 0) {
+        setter(arr => arr.filter((_, i) => i != arr.length - 1));
+        setCurrentColIndex(currentColIndex - 1);
+      }
+    }
+
     return (
         <Container className="justify-content-center">
         <Row>
@@ -59,7 +85,7 @@ function Grid() {
         <Row>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
           <Col xs={12} md={8} lg={6} xl={4}>
-            <UtilBar></UtilBar>
+            <UtilBar guess={makeGuess} delete={deleteGuess}></UtilBar>
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
