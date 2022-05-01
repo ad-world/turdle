@@ -5,7 +5,7 @@ import "./Header.styles.css"
 function Header() {
     return (
         <Container fluid class="header-container justify-content-center">
-            <h1 class="text-center header">Turdle</h1>
+            <h1 class="text-center header">Turdle 💩</h1>
             <hr></hr>
         </Container>
     )
