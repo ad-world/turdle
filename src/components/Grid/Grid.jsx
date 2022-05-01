@@ -14,6 +14,9 @@ function Grid(props) {
     const [sixth, setSixth] = useState([]);
 
     const guess = props.guess;
+    
+
+    const [lastMatch, setLastMatch] = useState([]);
 
 
     const grid = [first, second, third, fourth, fifth, sixth];
@@ -52,7 +55,6 @@ function Grid(props) {
       } else {
         alert("You need to fill the row before you can guess.")
       }
-      
     }
 
     function deleteGuess() {
@@ -62,17 +64,34 @@ function Grid(props) {
       }
     }
 
+    useEffect(() => {
+      const sum = lastMatch.reduce((prev, current) => prev + current, 0);
+      if(sum == 10) {
+        props.win(currentRowIndex);
+      }
+      
+    }, [lastMatch])
+
     return (
         <Container className="justify-content-center">
         <Row>
-          <Col xs={0} md={2} lg={3} xl={4}></Col>
+          <Col xs={0} md={2} lg={3} xl={4}>
+            <div style={{color: 'white'}}>
+              <h1>
+                Welcome To Turdle
+              </h1>
+              <p>You have six attemps to guess a length five sequence of different colored turds. 
+                Yellow means the turd is in the sequence but the wrong location, green means 
+                it is in the sequence in the correct location. Good luck!</p>
+            </div>
+          </Col>
           <Col xs={12} md={8} lg={6} xl={4}>
-            <TurdRow turd={first} guess={guess}></TurdRow>
-            <TurdRow turd={second} guess={guess}></TurdRow>
-            <TurdRow turd={third} guess={guess}></TurdRow>
-            <TurdRow turd={fourth} guess={guess}></TurdRow>
-            <TurdRow turd={fifth} guess={guess}></TurdRow>
-            <TurdRow turd={sixth} guess={guess}></TurdRow>
+            <TurdRow turd={first} guess={guess} row={0} guessed={currentRowIndex > 0 ? true : false} set={setLastMatch}></TurdRow>
+            <TurdRow turd={second} guess={guess} row={1} guessed={currentRowIndex > 1 ? true : false} set={setLastMatch}></TurdRow>
+            <TurdRow turd={third} guess={guess} row={2} guessed={currentRowIndex > 2 ? true : false} set={setLastMatch}></TurdRow>
+            <TurdRow turd={fourth} guess={guess} row={3} guessed={currentRowIndex > 3 ? true : false} set={setLastMatch}></TurdRow>
+            <TurdRow turd={fifth} guess={guess} row={4} guessed={currentRowIndex > 4 ? true : false} set={setLastMatch}></TurdRow>
+            <TurdRow turd={sixth} guess={guess} row={5} guessed={currentRowIndex > 5 ? true : false} set={setLastMatch}></TurdRow>
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
