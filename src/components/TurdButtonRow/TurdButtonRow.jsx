@@ -10,27 +10,27 @@ import whitePoop from "../../images/whitepoop.png"
 function TurdButtonRow(props){    
 
     return (
-        <Row className="mx-auto justify-content-center gx-0">
-            <Col xs={2} className="text-center">
-                <button className="m-2 poop" onClick={() => props.choosePoop("brown")}>
+        <Row className="mx-auto justify-content-center">
+            <Col xs={4} md={2} className="text-center">
+                <button className="m-1 poop" onClick={() => props.choosePoop("brown")}>
                     <img src={brownPoop} className="image"></img>
                 </button>
             </Col>
-            <Col xs={2} className="text-center">
-                <button className="m-2 poop" onClick={() => props.choosePoop("green")}>
+            <Col xs={4} md={2} className="text-center">
+                <button className="m-1 poop" onClick={() => props.choosePoop("green")}>
                     <img src={greenPoop} className="image"></img>
                 </button>
             </Col>
-            <Col xs={2} className="text-center">
-                <button className="m-2 poop" onClick={() => props.choosePoop("purple")}>
+            <Col xs={4} md={2} className="text-center">
+                <button className="m-1 poop" onClick={() => props.choosePoop("purple")}>
                     <img src={purplePoop} className="image"></img>
                 </button></Col>
-            <Col xs={2} className="text-center">
-                <button className="m-2 poop" onClick={() => props.choosePoop("red")}>
+            <Col xs={4} md={2} className="text-center">
+                <button className="m-1 poop" onClick={() => props.choosePoop("red")}>
                    <img src={redPoop} className="image"></img>
                 </button></Col>
-            <Col xs={2} className="text-center">
-                <button className="m-2 poop" onClick={() => props.choosePoop("white")}>
+            <Col xs={4} md={2} className="text-center">
+                <button className="m-1 poop" onClick={() => props.choosePoop("white")}>
                     <img src={whitePoop} className="image"></img>
                 </button>
             </Col>
