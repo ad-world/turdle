@@ -1,3 +1,4 @@
+
 const findFrequency = (arr = []) => {
     const map = {};
     for (let i = 0; i < arr.length; i++){
@@ -24,7 +25,11 @@ function useMatch(turd, guess) {
             turdFreq[el] -= 1;
             guessFreq[guess[i]] -= 1;
         } else if(guess.includes(el)) {
-            arr[i] = 1;
+            if(guess[guess.indexOf(el)] == turd[guess.indexOf(el)] && guessFreq[el] < turdFreq[el]) {
+                arr[i] = 0;
+            } else {
+                arr[i] = 1;
+            }
             turdFreq[el] -= 1;
             guessFreq[guess[guess.indexOf(el)]] -= 1;
         } else {
