@@ -68,6 +68,9 @@ function Grid(props) {
       const sum = lastMatch.reduce((prev, current) => prev + current, 0);
       if(sum == 10) {
         props.win(currentRowIndex);
+      } else if(currentRowIndex == 6) {
+        console.log('here');
+        props.loss(true);
       }
       
     }, [lastMatch])
