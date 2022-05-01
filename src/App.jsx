@@ -12,6 +12,8 @@ function App() {
   const [win, setWin] = useState(false);
   const [winRow, setWinRow] = useState(0);
 
+  const [loss, setLoss] = useState(false);
+
   const startDate = new Date(2022, 3, 29);
   const currentDate = new Date();
 
@@ -31,8 +33,8 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <Grid guess={guess} win={winner}></Grid>
-      { win && <WinModal attemps={winRow} day={day} win={win}></WinModal>}
+      <Grid guess={guess} win={winner} loss={setLoss}></Grid>
+      { (win || loss) && <WinModal attemps={winRow} day={day} win={win} loss={loss}></WinModal>}
     </div>
   )
 }
