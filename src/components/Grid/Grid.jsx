@@ -10,8 +10,6 @@ function Grid(props) {
     const [second, setSecond] = useState([]);
     const [third, setThird] = useState([]);
     const [fourth, setFourth] = useState([]);
-    const [fifth, setFifth] = useState([]);
-    const [sixth, setSixth] = useState([]);
 
     const guess = props.guess;
     
@@ -20,8 +18,8 @@ function Grid(props) {
     const [matches, setMatches] = useState([]);
 
 
-    const grid = [first, second, third, fourth, fifth, sixth];
-    const setters = [setFirst, setSecond, setThird, setFourth, setFifth, setSixth];
+    const grid = [first, second, third, fourth];
+    const setters = [setFirst, setSecond, setThird, setFourth];
     
     const [currentRowIndex, setCurrentRowIndex] = useState(0);
     const [currentColIndex, setCurrentColIndex] = useState(0);
@@ -100,8 +98,6 @@ function Grid(props) {
             <TurdRow turd={second} guess={guess} row={1} guessed={currentRowIndex > 1 ? true : false} set={setLastMatch}></TurdRow>
             <TurdRow turd={third} guess={guess} row={2} guessed={currentRowIndex > 2 ? true : false} set={setLastMatch}></TurdRow>
             <TurdRow turd={fourth} guess={guess} row={3} guessed={currentRowIndex > 3 ? true : false} set={setLastMatch}></TurdRow>
-            <TurdRow turd={fifth} guess={guess} row={4} guessed={currentRowIndex > 4 ? true : false} set={setLastMatch}></TurdRow>
-            <TurdRow turd={sixth} guess={guess} row={5} guessed={currentRowIndex > 5 ? true : false} set={setLastMatch}></TurdRow>
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
