@@ -17,6 +17,7 @@ function Grid(props) {
     
 
     const [lastMatch, setLastMatch] = useState([]);
+    const [matches, setMatches] = useState([]);
 
 
     const grid = [first, second, third, fourth, fifth, sixth];
@@ -66,12 +67,18 @@ function Grid(props) {
 
     useEffect(() => {
       const sum = lastMatch.reduce((prev, current) => prev + current, 0);
+      let arr = matches;
+      arr.push(lastMatch);
+      setMatches(arr);
+
       if(sum == 10) {
+        setMatches(matches => [...matches, lastMatch]);
+        props.rowSetter(matches);
         props.win(currentRowIndex);
       } else if(currentRowIndex == 6) {
-        console.log('here');
         props.loss(true);
       }
+
       
     }, [lastMatch])
 
