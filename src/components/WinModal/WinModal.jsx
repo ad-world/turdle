@@ -6,11 +6,8 @@ function WinModal({day, attemps, win, loss, message}) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    console.log(loss);
     useEffect(() => {
         if(win || loss) {
-            console.log(win);
-            console.log(loss);
             setTimeout(() => handleShow(), 300);
         } 
     }, [win, loss]);
