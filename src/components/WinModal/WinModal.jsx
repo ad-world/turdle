@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, Modal} from "react-bootstrap";
 
-function WinModal({day, attemps, win, loss}) {
+function WinModal({day, attemps, win, loss, message}) {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,6 +15,18 @@ function WinModal({day, attemps, win, loss}) {
         } 
     }, [win, loss]);
 
+    function handleClick() {
+        if(navigator.share) {
+            navigator.share(
+                {   
+                    text: message
+                }
+                );
+        } else {
+            return;
+        }
+    }
+
     if(win) {
         return (
             <Modal
@@ -24,12 +36,16 @@ function WinModal({day, attemps, win, loss}) {
                 keyboard={false}
             >
                 <Modal.Header closeButton style={{backgroundColor: '#343438', color: 'white'}}>
-                <Modal.Title>Turdle Day {day}</Modal.Title>
+                <Modal.Title>Turdle Day {day} 💩</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{backgroundColor: '#343438', color: 'white'}}>
                 Congratulations! You solved today's Turdle in {attemps} attempt(s)!
                 Come back tomorrow for a new Turdle! 💩
                 </Modal.Body>
+                {navigator.share && 
+                <Modal.Footer style={{backgroundColor: '#343438', color: 'white'}}>
+                    <Button variant="dark" onClick={handleClick}>Share Score</Button>
+                </Modal.Footer>}
             </Modal>
         )
     } else if(loss) {
@@ -41,11 +57,15 @@ function WinModal({day, attemps, win, loss}) {
                 keyboard={false}
             >
                 <Modal.Header closeButton style={{backgroundColor: '#343438', color: 'white'}}>
-                <Modal.Title>Turdle Day {day}</Modal.Title>
+                <Modal.Title>Turdle Day {day} 💩</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{backgroundColor: '#343438', color: 'white'}}>
                 Unfortunately you could not solve today's wordle. Better luck tomorrow!
                 </Modal.Body>
+                {navigator.share && 
+                <Modal.Footer style={{backgroundColor: '#343438', color: 'white'}}>
+                    <Button variant="dark" onClick={handleClick}>Share Score</Button>
+                </Modal.Footer>}
             </Modal>
         )
     }
