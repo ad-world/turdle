@@ -6,6 +6,7 @@ import Grid from "./components/Grid/Grid";
 import WinModal from './components/WinModal/WinModal';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import useHash from './util/useHash';
+import useShare from './util/useShare';
 import moment from "moment"
 
 function App() {
@@ -13,6 +14,8 @@ function App() {
   const [winRow, setWinRow] = useState(0);
 
   const [loss, setLoss] = useState(false);
+
+  const [rows, setRows] = useState([]);
 
   const startDate = new Date(2022, 3, 29);
   const currentDate = new Date();
@@ -24,6 +27,8 @@ function App() {
   const diff = currentDate.getTime() - startDate.getTime();
   const day = Math.ceil(diff / (1000 * 3600 * 24));
 
+  const message = useShare(rows, day, win);
+
   const winner = (row) => {
     setWin(true);
     setWinRow(row);
@@ -33,8 +38,8 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      <Grid guess={guess} win={winner} loss={setLoss}></Grid>
-      { (win || loss) && <WinModal attemps={winRow} day={day} win={win} loss={loss}></WinModal>}
+      <Grid guess={guess} win={winner} loss={setLoss} rowSetter={setRows}></Grid>
+      { (win || loss) && <WinModal attemps={winRow} day={day} win={win} loss={loss} message={message}></WinModal>}
     </div>
   )
 }
