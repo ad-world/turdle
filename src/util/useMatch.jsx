@@ -23,9 +23,11 @@ function useMatch(turd, guess) {
         if(el == guess[i]) {
             arr[i] = 2;
             turdFreq[el] -= 1;
-            guessFreq[guess[i]] -= 1;
+            guessFreq[el] -= 1;
         } else if(guess.includes(el)) {
-            if(guess[guess.indexOf(el)] == turd[guess.indexOf(el)] && guessFreq[el] < turdFreq[el]) {
+            if(guess[guess.indexOf(el)] == turd[guess.indexOf(el)]) {
+                arr[i] = 0;
+            } else if(guessFreq[el] <= 0) {
                 arr[i] = 0;
             } else {
                 arr[i] = 1;
