@@ -73,7 +73,7 @@ function Grid(props) {
         setMatches(matches => [...matches, lastMatch]);
         props.rowSetter(matches);
         props.win(currentRowIndex);
-      } else if(currentRowIndex == 6) {
+      } else if(currentRowIndex == 4) {
         props.loss(true);
       }
 
