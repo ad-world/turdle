@@ -16,17 +16,7 @@ function TurdRow(props){
     
 
     const updateColor = (i, color) => {
-        if(i == 0) {
-            document.getElementById(`cell1_${row}`).style.backgroundColor = color;
-        } else if(i == 1) {
-            document.getElementById(`cell2_${row}`).style.backgroundColor = color;
-        } else if(i == 2) {
-            document.getElementById(`cell3_${row}`).style.backgroundColor = color;
-        } else if(i == 3) {
-            document.getElementById(`cell4_${row}`).style.backgroundColor = color;
-        } else if(i == 4) {
-            document.getElementById(`cell5_${row}`).style.backgroundColor = color;
-        }
+        document.getElementById(`cell${i + 1}_${row}`).style.backgroundColor = color;
     }
 
     useEffect(() => {
