@@ -16,7 +16,8 @@ function WinModal({day, attemps, win, loss, message}) {
         if(navigator.share) {
             navigator.share(
                 {   
-                    text: message
+                    text: message,
+                    url: "https://turdle-9a8d2.web.app/"
                 }
                 );
         } else {
