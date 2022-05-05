@@ -13,7 +13,6 @@ function Grid(props) {
 
     const guess = props.guess;
     
-
     const [lastMatch, setLastMatch] = useState([]);
     const [matches, setMatches] = useState([]);
 
@@ -63,15 +62,26 @@ function Grid(props) {
       }
     }
 
+    // useEffect(() => {
+    //   if(props.played == true) {
+    //     setFirst(props.playedRows[first]);
+    //     setSecond(props.playedRows[second]);
+    //     setThird(props.playedRows[third]);
+    //     setFourth(props.playedRows[fourth]);
+    //   }
+    // }, [first, second, third, fourth])
+
     useEffect(() => {
       const sum = lastMatch.reduce((prev, current) => prev + current, 0);
       let arr = matches;
       arr.push(lastMatch);
       setMatches(arr);
 
+
       if(sum == 10) {
-        setMatches(matches => [...matches, lastMatch]);
-        props.rowSetter(matches);
+        // setMatches(matches => [...matches, lastMatch]);        
+        arr = arr.filter(item => item.length != 0);
+        props.rowSetter(arr);
         props.win(currentRowIndex);
       } else if(currentRowIndex == 4) {
         props.loss(true);
@@ -88,7 +98,7 @@ function Grid(props) {
               <h1>
                 Welcome To Turdle
               </h1>
-              <p>You have six attemps to guess a length five sequence of different colored turds. 
+              <p>You have four attempts to guess a length five sequence of different colored turds. 
                 Yellow means the turd is in the sequence but the wrong location, green means 
                 it is in the sequence in the correct location. Good luck!</p>
             </div>
