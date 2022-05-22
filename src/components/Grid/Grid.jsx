@@ -45,7 +45,7 @@ function Grid(props) {
     }
 
     function makeGuess() {
-      if(arr.length == 5) {
+      if(arr.length == 5) {  
         setCurrentRowIndex(currentRowIndex + 1);
         setCurrentColIndex(0);
         arr = grid[currentColIndex];
@@ -93,7 +93,7 @@ function Grid(props) {
     return (
         <Container className="justify-content-center">
         <Row>
-          <Col xs={0} md={2} lg={3} xl={4}>
+          <Col xs={0} md={2} lg={3} xl={3}>
             <div style={{color: 'white'}}>
               <h1>
                 Welcome To Turdle
@@ -103,13 +103,13 @@ function Grid(props) {
                 it is in the sequence in the correct location. Good luck!</p>
             </div>
           </Col>
-          <Col xs={12} md={8} lg={6} xl={4}>
+          <Col xs={12} md={8} lg={6} xl={6}>
             <TurdRow turd={first} guess={guess} row={0} guessed={currentRowIndex > 0 ? true : false} set={setLastMatch}></TurdRow>
             <TurdRow turd={second} guess={guess} row={1} guessed={currentRowIndex > 1 ? true : false} set={setLastMatch}></TurdRow>
             <TurdRow turd={third} guess={guess} row={2} guessed={currentRowIndex > 2 ? true : false} set={setLastMatch}></TurdRow>
             <TurdRow turd={fourth} guess={guess} row={3} guessed={currentRowIndex > 3 ? true : false} set={setLastMatch}></TurdRow>
           </Col>
-          <Col xs={0} md={2} lg={3} xl={4}></Col>
+          <Col xs={0} md={2} lg={3} xl={3}></Col>
         </Row>
         <Row>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
@@ -124,7 +124,7 @@ function Grid(props) {
             <UtilBar guess={makeGuess} delete={deleteGuess}></UtilBar>
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
-        </Row>
+        </Row> 
       </Container>
     )
 }
