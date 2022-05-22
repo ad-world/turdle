@@ -17,9 +17,9 @@ function useShare(rows, day, win) {
         }
     }
     if(win) {
-        return message;
+        return message + '\n';
     } else {
-        return `Turdle Day ${day} 💩 \n\n 💩/4`;
+        return `Turdle Day ${day} 💩 \n\n 💩/4\n`;
     }
 }
 
