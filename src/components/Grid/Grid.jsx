@@ -4,6 +4,7 @@ import { Container, Col, Row} from "react-bootstrap"
 import TurdButtonRow from "../TurdButtonRow/TurdButtonRow";
 import TurdRow from "../TurdRow/TurdRow";
 import UtilBar from "../UtilBar/UtilBar";
+import { updateSessionRows, getSessionRows, setSessionPlayed, checkSessionPlayed } from "../../util/useSession";
 
 function Grid(props) {
     const [first, setFirst] = useState([]);
@@ -12,10 +13,11 @@ function Grid(props) {
     const [fourth, setFourth] = useState([]);
 
     const guess = props.guess;
+    const [played, setPlayed] = useState(false);
     
     const [lastMatch, setLastMatch] = useState([]);
     const [matches, setMatches] = useState([]);
-
+    const [guesses, setGuesses] = useState([]);
 
     const grid = [first, second, third, fourth];
     const setters = [setFirst, setSecond, setThird, setFourth];
@@ -26,9 +28,28 @@ function Grid(props) {
     var arr = grid[currentRowIndex];
     var setter = setters[currentRowIndex];
 
+    useEffect(() => {
+      const session_rows = getSessionRows();
+      setPlayed(checkSessionPlayed());
+
+      if(session_rows) {
+        setGuesses(session_rows.rows);    
+        setFirst(session_rows.rows.length >= 1 ? session_rows.rows[0] : []);
+        setSecond(session_rows.rows.length >= 2 ? session_rows.rows[1] : []);
+        setThird(session_rows.rows.length >= 3 ? session_rows.rows[2] : []);
+        setFourth(session_rows.rows.length >= 4 ? session_rows.rows[3] : []);
+
+        setCurrentRowIndex(session_rows.rows.length);    
+      }
+
+  
+      console.log(guesses);
+    }, []);
+    
+
 
     function choosePoop(color) {
-      if(currentRowIndex != 6 && currentColIndex != 5) {
+      if(currentRowIndex != 4 && currentColIndex != 5) {
         if(color == "red") {
           setter(arr => [...arr, "red"]);
         } else if(color == "brown") {
@@ -45,7 +66,8 @@ function Grid(props) {
     }
 
     function makeGuess() {
-      if(arr.length == 5) {  
+      if(arr.length == 5) { 
+        updateSessionRows(arr);
         setCurrentRowIndex(currentRowIndex + 1);
         setCurrentColIndex(0);
         arr = grid[currentColIndex];
@@ -62,15 +84,6 @@ function Grid(props) {
       }
     }
 
-    // useEffect(() => {
-    //   if(props.played == true) {
-    //     setFirst(props.playedRows[first]);
-    //     setSecond(props.playedRows[second]);
-    //     setThird(props.playedRows[third]);
-    //     setFourth(props.playedRows[fourth]);
-    //   }
-    // }, [first, second, third, fourth])
-
     useEffect(() => {
       const sum = lastMatch.reduce((prev, current) => prev + current, 0);
       let arr = matches;
@@ -79,10 +92,10 @@ function Grid(props) {
 
 
       if(sum == 10) {
-        // setMatches(matches => [...matches, lastMatch]);        
         arr = arr.filter(item => item.length != 0);
         props.rowSetter(arr);
         props.win(currentRowIndex);
+        setSessionPlayed();
       } else if(currentRowIndex == 4) {
         props.loss(true);
       }
@@ -111,6 +124,7 @@ function Grid(props) {
           </Col>
           <Col xs={0} md={2} lg={3} xl={3}></Col>
         </Row>
+        {!played && 
         <Row>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
           <Col xs={12} md={8} lg={6} xl={4}>
@@ -118,6 +132,8 @@ function Grid(props) {
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row>
+        }
+        {!played &&
         <Row>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
           <Col xs={12} md={8} lg={6} xl={4}>
@@ -125,6 +141,7 @@ function Grid(props) {
           </Col>
           <Col xs={0} md={2} lg={3} xl={4}></Col>
         </Row> 
+        }
       </Container>
     )
 }
