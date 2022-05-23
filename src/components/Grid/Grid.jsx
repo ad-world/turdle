@@ -98,6 +98,7 @@ function Grid(props) {
         setSessionPlayed();
       } else if(currentRowIndex == 4) {
         props.loss(true);
+        setSessionPlayed();
       }
 
       
