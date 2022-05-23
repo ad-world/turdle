@@ -85,5 +85,5 @@ function checkSessionPlayed() {
 
 
 
-export { useSession, setSession, updateSessionRows, getSessionRows, setSessionPlayed, checkSessionPlayed};
+export { updateSessionRows, getSessionRows, setSessionPlayed, checkSessionPlayed};
 
