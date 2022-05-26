@@ -5,6 +5,7 @@ import TurdButtonRow from "../TurdButtonRow/TurdButtonRow";
 import TurdRow from "../TurdRow/TurdRow";
 import UtilBar from "../UtilBar/UtilBar";
 import { updateSessionRows, getSessionRows, setSessionPlayed, checkSessionPlayed } from "../../util/useSession";
+import useMatch from "../../util/useMatch";
 
 function Grid(props) {
     const [first, setFirst] = useState([]);
@@ -38,12 +39,17 @@ function Grid(props) {
         setSecond(session_rows.rows.length >= 2 ? session_rows.rows[1] : []);
         setThird(session_rows.rows.length >= 3 ? session_rows.rows[2] : []);
         setFourth(session_rows.rows.length >= 4 ? session_rows.rows[3] : []);
+        
+        let rows = [session_rows.rows.length >= 1 ? session_rows.rows[0] : [], 
+                      session_rows.rows.length >= 2 ? session_rows.rows[1] : [],
+                      session_rows.rows.length >= 3 ? session_rows.rows[2] : [],
+                      session_rows.rows.length >= 4 ? session_rows.rows[3] : []]
+        rows = rows.filter(item => item.length != 0);
+        props.rowSetter(rows);
 
         setCurrentRowIndex(session_rows.rows.length);    
       }
 
-  
-      console.log(guesses);
     }, []);
     
 
@@ -67,7 +73,7 @@ function Grid(props) {
 
     function makeGuess() {
       if(arr.length == 5) { 
-        updateSessionRows(arr);
+        updateSessionRows(arr, useMatch(arr, guess));
         setCurrentRowIndex(currentRowIndex + 1);
         setCurrentColIndex(0);
         arr = grid[currentColIndex];

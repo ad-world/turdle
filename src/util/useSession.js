@@ -1,4 +1,4 @@
-function updateSessionRows(row) {
+function updateSessionRows(row, match) {
     console.log(row);
     const d = new Date();
     const day = d.getDate();
@@ -12,7 +12,8 @@ function updateSessionRows(row) {
                 day,
                 month,
                 rows: item ? [...item.rows, row] : [row],
-                completed : item.completed ? item.completed + 1 : 1
+                completed : item.completed ? item.completed + 1 : 1,
+                matches: item ? [...item.matches, match] : [match]
             }
             localStorage.setItem('turd-rows', JSON.stringify(newStorage));
         } else {
@@ -20,7 +21,8 @@ function updateSessionRows(row) {
                 day,
                 month,
                 rows: [row],
-                completed: 1
+                completed: 1,
+                matches: [match]
             }
             localStorage.setItem('turd-rows', JSON.stringify(newStorage));
         }
@@ -29,7 +31,8 @@ function updateSessionRows(row) {
             day,
             month,
             rows: [row],
-            completed: 1
+            completed: 1,
+            matches: [match]
         }
         localStorage.setItem('turd-rows', JSON.stringify(newStorage));
     }

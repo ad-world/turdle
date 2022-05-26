@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import "react-bootstrap"
 import Header from './components/Header/Header'
@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import useHash from './util/useHash';
 import useShare from './util/useShare';
 import moment from "moment"
+import { updateSessionRows, getSessionRows, setSessionPlayed, checkSessionPlayed } from "./util/useSession";
 
 function App() {
   const [win, setWin] = useState(false);
@@ -16,7 +17,6 @@ function App() {
   const [loss, setLoss] = useState(false);
 
   const [rows, setRows] = useState([]);
-
   const startDate = new Date(2022, 3, 29);
   const currentDate = new Date();
 
@@ -27,7 +27,18 @@ function App() {
   const diff = currentDate.getTime() - startDate.getTime();
   const day = Math.ceil(diff / (1000 * 3600 * 24));
 
-  const message = useShare(rows, day, win);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if(checkSessionPlayed()) {
+      const item = getSessionRows();
+      setMessage(useShare(item.matches, day, win));
+    } else {
+      setMessage(rows, day, win);
+    }
+  }, [rows]);
+
+  // const message = useShare(rows, day, win);
 
   const winner = (row) => {
     setWin(true);

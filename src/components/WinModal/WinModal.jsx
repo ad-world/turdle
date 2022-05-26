@@ -20,7 +20,10 @@ function WinModal({day, attemps, win, loss, message}) {
                     url: "https://turdle-9a8d2.web.app/"
                 }
                 );
-        } else {
+        } else if(navigator.clipboard) {
+            const copyText = message + "\n\nhttps://turdle-9a8d2.web.app/";
+            navigator.clipboard.writeText(copyText);
+        } {
             return;
         }
     }
@@ -40,10 +43,12 @@ function WinModal({day, attemps, win, loss, message}) {
                 Congratulations! You solved today's Turdle in {attemps} attempt(s)!
                 Come back tomorrow for a new Turdle! 💩
                 </Modal.Body>
-                {navigator.share && 
+                
                 <Modal.Footer style={{backgroundColor: '#343438', color: 'white'}}>
-                    <Button variant="dark" onClick={handleClick}>Share Score</Button>
-                </Modal.Footer>}
+                {(navigator.share || navigator.clipboard) && 
+                    <Button variant="dark" onClick={handleClick}>{navigator.share ? 'Share Score' : 'Copy Score to Clipboard'}</Button>
+                }
+                </Modal.Footer>
             </Modal>
         )
     } else if(loss) {
