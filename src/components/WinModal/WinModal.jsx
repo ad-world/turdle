@@ -65,9 +65,9 @@ function WinModal({day, attemps, win, loss, message}) {
                 <Modal.Body style={{backgroundColor: '#343438', color: 'white'}}>
                 Unfortunately you could not solve today's wordle. Better luck tomorrow!
                 </Modal.Body>
-                {navigator.share && 
+                {(navigator.share || navigator.clipboard) && 
                 <Modal.Footer style={{backgroundColor: '#343438', color: 'white'}}>
-                    <Button variant="dark" onClick={handleClick}>Share Score</Button>
+                    <Button variant="dark" onClick={handleClick}>{navigator.share ? 'Share Score' : 'Copy Score to Clipboard'}</Button>
                 </Modal.Footer>}
             </Modal>
         )
