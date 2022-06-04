@@ -1,5 +1,4 @@
 function updateSessionRows(row, match) {
-    console.log(row);
     const d = new Date();
     const day = d.getDate();
     const month = d.getMonth();
