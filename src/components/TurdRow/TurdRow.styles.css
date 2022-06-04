@@ -3,6 +3,7 @@
     border: solid 1px;
     background-color: #1c1d1f;
     border-radius: 5%;
+    transition: 0.5s;
 }
 
  @media (min-width: 320px) and (max-width: 767px) {
