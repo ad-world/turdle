@@ -34,7 +34,7 @@ function App() {
       const item = getSessionRows();
       setMessage(useShare(item.matches, day, win));
     } else {
-      setMessage(rows, day, win);
+      setMessage(useShare(rows, day, win));
     }
   }, [rows]);
 
