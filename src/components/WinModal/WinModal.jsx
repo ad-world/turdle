@@ -17,11 +17,11 @@ function WinModal({day, attemps, win, loss, message}) {
             navigator.share(
                 {   
                     text: message,
-                    url: "https://turdle-9a8d2.web.app/"
+                    url: "https://ad-world.github.io/turdle/"
                 }
                 );
         } else if(navigator.clipboard) {
-            const copyText = message + "\n\nhttps://turdle-9a8d2.web.app/";
+            const copyText = message + "\n\nhttps://ad-world.github.io/turdle/";
             navigator.clipboard.writeText(copyText);
         } {
             return;
